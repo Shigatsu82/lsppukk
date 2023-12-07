@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('tgl_keluar');
             $table->integer('qty_keluar');
             $table->integer('barang_id');
-            $table->foreign('barang_id')->references('id')->on('barang');
+            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
             $table->timestamps();
         });
     }

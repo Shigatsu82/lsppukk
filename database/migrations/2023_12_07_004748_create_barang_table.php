@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('spesifikasi');
             $table->smallInteger('stok');
             $table->smallInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategori');
+            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
             $table->timestamps();
         });
     }
