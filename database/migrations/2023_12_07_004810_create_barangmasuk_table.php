@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('barangmasuk', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
-            $table->date('tgl_masuk');
+            $table->date('tgl_masuk')->default(date('Y-m-d'));
             $table->integer('qty_masuk');
             $table->integer('barang_id');
             $table->foreign('barang_id')->references('id')->on('barang');
