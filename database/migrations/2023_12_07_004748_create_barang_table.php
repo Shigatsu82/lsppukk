@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('barang', function (Blueprint $table) {
-            $table->id();
-            
+            $table->integer('id')->autoIncrement();
+            $table->string('merk', 30);
+            $table->text('spesifikasi');
+            $table->smallInteger('stok');
+            $table->smallInteger('kategori_id');
+            $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->timestamps();
         });
     }
