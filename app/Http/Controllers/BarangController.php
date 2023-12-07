@@ -91,7 +91,6 @@ class BarangController extends Controller
             'merk'        => 'required',
             'seri'        => 'required',
             'spesifikasi' => 'required',
-            'stok'        => 'required',
             'kategori_id' => 'required',
         ]);
 
@@ -102,7 +101,6 @@ class BarangController extends Controller
                 'merk'          => $request->merk,
                 'seri'          => $request->seri,
                 'spesifikasi'   => $request->spesifikasi,
-                'stok'          => $request->stok,
                 'kategori_id'   => $request->kategori_id,
             ]);
 

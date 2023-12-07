@@ -40,6 +40,7 @@
                             <div class="form-group">
                                 <label class="font-weight-bold">Nama Barang</label>
                                 <select name="barang_id" id="" class="form-control">
+                                        <option value="" selected>Pilih Barang</option>
                                     @foreach ($Barang as $rowBarang )
                                         <option value="{{$rowBarang->id}}">{{$rowBarang->merk}}</option>
                                     @endforeach
