@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('barang', function (Blueprint $table) {
             $table->integer('id')->autoIncrement();
             $table->string('merk', 30);
+            $table->string('seri', 40);
             $table->text('spesifikasi');
             $table->smallInteger('stok');
             $table->smallInteger('kategori_id');
