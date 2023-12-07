@@ -50,18 +50,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="font-weight-bold">STOK</label>
-                                <input type="number" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ old('stok',$rsetBarang->stok) }}" placeholder="Masukkan Stok Barang">
-                           
-                                <!-- error message untuk stok -->
-                                @error('stok')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group">
                                 <label class="font-weight-bold">KATEGORI</label>
                                 <select class="form-control" name="kategori_id" aria-label="Default select example">
                                     @foreach ($akategori as $kategori)

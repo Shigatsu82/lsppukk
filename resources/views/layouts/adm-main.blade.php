@@ -35,7 +35,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">NEWBIEKoding</div>
+                <div class="sidebar-brand-text mx-3">Project PKK</div>
             </a>
 
             <!-- Divider -->
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -59,17 +59,24 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('kategori.index')}}">
-                    <i class="fa fa-user-circle" aria-hidden="true"></i>
                     <span>Kategori</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{route('barang.index')}}">
-                    <i class="fa fa-user-circle" aria-hidden="true"></i>
                     <span>Barang</span>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('barangmasuk.index')}}">
+                    <span>Barang Masuk</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('barangkeluar.index')}}">
+                    <span>Barang Keluar</span>
+                </a>
+            </li>
        
 
             <!-- Divider -->
@@ -285,10 +292,6 @@
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
-                                <form action="/logout" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Logout</button>
-                                </form>
                             </div>
                         </li>
 
@@ -354,7 +357,10 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

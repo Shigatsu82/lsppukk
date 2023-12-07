@@ -43,7 +43,7 @@
                                 <td>{{ $rowbarang->seri  }}</td>
                                 <td>{{ $rowbarang->spesifikasi  }}</td>
                                 <td>{{ $rowbarang->stok  }}</td>
-                                <td>{{ $rowbarang->kategori->kategori  }}</td>
+                                <td>{{ $rowbarang->kategori->deskripsi}}</td>
                                 
                                 <td class="text-center">
                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('barang.destroy', $rowbarang->id) }}" method="POST">
