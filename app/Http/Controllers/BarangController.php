@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
+    
     public function index(Request $request)
     {
         $rsetBarang = Barang::with('kategori')->latest()->paginate(10);
