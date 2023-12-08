@@ -27,9 +27,7 @@ Route::get('daftar', [RegisterController::class, 'create'])->name('daftar');
 Route::post('register', [RegisterController::class,'store'])->name('register');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/', function(){
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', [KategoriController::class, 'count'])->name('dashboard');
     Route::resource('barang', BarangController::class);
     Route::resource('kategori', KategoriController::class);
     Route::resource('barangmasuk', BarangMasukController::class);
