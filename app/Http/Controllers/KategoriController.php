@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Barang;
 use App\Models\Kategori;
+use App\Models\BarangMasuk;
+use App\Models\BarangKeluar;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class KategoriController extends Controller
 {
+    public function count(){
+        $countKategori = Kategori::count();
+        $countBarang = Barang::count();
+        $countBarangKel = BarangKeluar::count();
+        $countBarangMas = BarangMasuk::count();
+        return view('dashboard',compact('countKategori', 'countBarang', 'countBarangKel', 'countBarangMas'));
+    }
     public function index(Request $request)
     {
     /**
