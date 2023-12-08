@@ -72,7 +72,10 @@ class BarangMasukController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $barangall = Barang::all();
+        $rsetBarangMas = BarangMasuk::find($id);
+        $selectedBarang = Barang::find($rsetBarangMas->barang_id);
+        return view('barangmasuk.edit', compact('rsetBarangMas', 'barangall', 'selectedBarang'));
     }
 
     /**
@@ -80,7 +83,24 @@ class BarangMasukController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'date'        => 'required',
+            'qty_masuk' => 'required',
+            'barang_id'        => 'required',
+        ]);
+
+        $rsetBarangMas = BarangMasuk::find($id);
+
+            //update post without image
+            $rsetBarangMas->update([
+                'tgl_masuk'          => $request->date,
+                'qty_masuk'           => $request->qty_masuk,
+                'barang_id'          => $request->barang_id,
+            ]);
+
+        // Redirect to the index page with a success message
+        return redirect()->route('barangmasuk.index')->with(['success' => 'Data Berhasil Diubah!']);
+        
     }
 
     /**
