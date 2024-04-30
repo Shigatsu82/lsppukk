@@ -1,62 +1,79 @@
 @extends('layouts.adm-main')
 
+@section('title', 'Admin Inventory - Kategori')
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-12">
-		<div class="pull-left">
-		    <h2>DAFTAR KATEGORI</h2>
-		</div>
-        @if ($message = Session::get('success'))
-            <div class="alert alert-success">
-                <p>{{ $message }}</p>
-            </div>
-        @endif
-                <div class="card">
-                    <div class="card-body">
-                        <a href="{{ route('kategori.create') }}" class="btn btn-md btn-success mb-3">TAMBAH KATEGORI</a>
-                    </div>
-
+                <div class="card-body text-center">
+                    <a href="{{ route('kategori.create') }}" class="btn btn-md btn-success">TAMBAH KATEGORI</a>
                 </div>
-
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>DESKRIPSI</th>
-                            <th>KATEGORI</th>
-                            <th style="width: 15%">AKSI</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($rsetKategori as $rowkategori)
-                            <tr>
-                                <td>{{ ++$i }}</td>
-                                <td>{{ $rowkategori->deskripsi  }}</td>
-                                <td>{{ $rowkategori->ketkategorik  }}</td>
-                            <td class="text-center">
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kategori.destroy', $rowkategori->id) }}" method="POST">
-                                        <a href="{{ route('kategori.show', $rowkategori->id) }}" class="btn btn-sm btn-dark"><i class="fa fa-eye"></i></a>
-                                        <a href="{{ route('kategori.edit', $rowkategori->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @empty
-                            <div class="alert">
-                                Data kategori belum tersedia!
-                            </div>
-                        @endforelse
-                    </tbody>
-                   
-                </table>
-                {!! $rsetKategori->links('pagination::bootstrap-5') !!}
-
             </div>
+
+            @if(session('success') || session('fail'))
+                <div class="col-md-12">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if(session('fail'))
+                        <div class="alert alert-danger">
+                            {{ session('fail') }}
+                        </div>
+                    @endif
+                </div>
+            @endif
+
+            @if(count($Kategori) > 0)
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>DESKRIPSI</th>
+                                <th>KATEGORI</th>
+                                <th style="width: 15%">AKSI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($Kategori as $kategori)
+                                <tr>
+                                    <td>{{ $kategori->id }}</td>
+                                    <td>{{ $kategori->deskripsi }}</td>
+                                    <td>{{ $kategori->kategori }}</td>
+                                    
+                                    <td class="text-center"> 
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kategori.destroy', $kategori->id) }}" method="POST">
+                                            <a href="{{ route('kategori.show', $kategori->id) }}" class="btn btn-sm btn-dark"><i class="fa fa-eye"></i></a>
+                                            <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <div class="alert alert-warning">
+                                            Data kategori kosong.
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <div class="col-md-12">
+                    <div class="alert alert-danger text-center">
+                        Record <strong>Kategori</strong> kosong.
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

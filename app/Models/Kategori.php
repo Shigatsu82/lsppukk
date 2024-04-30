@@ -11,33 +11,41 @@ class Kategori extends Model
     use HasFactory;
 
     protected $table = 'kategori';
+    protected $primaryKey = 'id';
+    protected $fillable = [
+        'deskripsi',
+        'kategori',
+    ];
 
-    protected $fillable = ['deskripsi','kategori'];
+    // use HasFactory;
 
-    public static function infoKategori(){
-        return DB::table('kategori')
-            ->select('kategori.id','deskripsi',DB::raw('infoKategori(kategori) as Info'))->get();
-    }
+    // protected $table = 'kategori';
 
-    public function ketKategorik()
-    {
-        switch ($this->kategori) {
-            case 'M':
-                return 'Barang Modal';
-            case 'A':
-                return 'Alat';
-            case 'BHP':
-                return 'Bahan Habis Pakai';
-            case 'BTHP':
-                return 'Bahan Tidak Habis Pakai';
-            default:
-                return 'Unknown';
-        }
-    }
+    // protected $fillable = ['deskripsi','kategori'];
 
-    public static function getKategoriAll(){
-        return DB::table('kategori')
-            ->select('kategori.id','deskripsi',DB::raw('ketKategorik(kategori) as ketkategorik'));
-    }
+    // public static function infoKategori(){
+    //     return DB::table('kategori')
+    //         ->select('kategori.id','deskripsi',DB::raw('infoKategori(kategori) as Info'))->get();
+    // }
+
+    // public function ketKategorik()
+    // {
+    //     switch ($this->kategori) {
+    //         case 'M':
+    //             return 'Barang Modal';
+    //         case 'A':
+    //             return 'Alat';
+    //         case 'BHP':
+    //             return 'Bahan Habis Pakai';
+    //         case 'BTHP':
+    //             return 'Bahan Tidak Habis Pakai';
+    //         default:
+    //             return 'Unknown';
+    //     }
+    // }
+
+    // public static function getKategoriAll(){
+    //     return DB::table('kategori')->select('kategori.id','deskripsi',DB::raw('ketKategorik(kategori) as ketkategorik'));
+    // }
 
 }
