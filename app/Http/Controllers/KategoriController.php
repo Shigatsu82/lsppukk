@@ -115,8 +115,21 @@ class KategoriController extends Controller
     }
 
     public function getAPIKategori(){
-        $kategori = Kategori::all();
-        $data = array("data"=>$kategori);
+        $categories = Kategori::select('id', 'deskripsi', 'kategori')->get();
+        $data = array("data"=>$categories);
         return response()->json($data);
+    }
+    public function getAPIOneKategori($kategori){
+        $response404 = array(
+
+        );
+
+        $categories = Kategori::select('id', 'deskripsi', 'kategori')->get()->where('kategori', $kategori);
+        $data = array("data"=>$categories);
+        if($data){
+            return response()->json($data);
+        }else{
+            return response()->json(['status' => 'Kategori tidak ditemukan']);
+        }
     }
 }   

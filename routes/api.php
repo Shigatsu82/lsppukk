@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('getKategori', [KategoriController::class, 'getAPIKategori']);
+Route::get('getSomeKategori/{kategori}', [KategoriController::class, 'getAPIOneKategori']);

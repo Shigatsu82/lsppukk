@@ -27,7 +27,7 @@
                             <div class="form-group">
                                 <label class="font-weight-bold">KATEGORI</label>
                                 <select class="form-control" name="kategori" aria-label="Default select example">
-                                @foreach ($akategori as $key => $value)
+                                @foreach ($kategori as $key => $value)
                                     <option value="{{ $key }}">{{ $value }}</option>
                                 @endforeach
                                 </select>
